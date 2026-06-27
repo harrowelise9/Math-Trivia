@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  background-color: #20B2AA; /* Darker aqua */
+  color: white;
+  font-family: 'Delius', sans-serif;
+  font-weight: 700; /* Thicker */
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block; /* Stack vertically */
+}
