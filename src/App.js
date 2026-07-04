@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import './App.css';
 import DOMPurify from 'dompurify';
@@ -21,17 +20,16 @@ function App() {
     }
   }
 
-  async function fetchQuestions() {
+  const fetchQuestions = async () => {
     const data = await getData();
     if (data && data.results) {
       setQuestions(data.results);
     }
-  }
+  };
 
   useEffect(() => {
     fetchQuestions();
-  }, []);
-
+  }, [])
   const currentQuestion = questions[questionNumber];
   const cleanHtml = currentQuestion
     ? DOMPurify.sanitize(currentQuestion.question)
