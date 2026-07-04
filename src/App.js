@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import DOMPurify from 'dompurify';
 function App() {
@@ -7,7 +7,7 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [gameEnded, setgameEnded]= useState(false)
 
-  async function getData() {
+  const getData = useCallback(async () => {
     try {
       const response = await fetch(
         'https://opentdb.com/api.php?amount=10&category=19&difficulty=easy&type=multiple'
@@ -18,18 +18,18 @@ function App() {
     } catch (err) {
       console.log(err.message);
     }
-  }
+  }, []);
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = useCallback(async () => {
     const data = await getData();
     if (data && data.results) {
       setQuestions(data.results);
     }
-  };
+  }, [getData]);
 
   useEffect(() => {
     fetchQuestions();
-  }, [])
+  }, [fetchQuestions]);
   const currentQuestion = questions[questionNumber];
   const cleanHtml = currentQuestion
     ? DOMPurify.sanitize(currentQuestion.question)
