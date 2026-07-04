@@ -58,7 +58,7 @@ answerChoices[randomNumber]=temp
   }
   return (
     <>
-      <h1>Celebrity Knowledge</h1>
+      <h1>Maths Knowledge</h1>
       {!isStarted && <button onClick={() => setStarted(true)}>Start</button>}
       {isStarted && !gameEnded &&(
         <>
